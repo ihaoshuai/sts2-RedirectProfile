@@ -9,10 +9,12 @@
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
     <SteamInstallPath>D:\booe\source\steam</SteamInstallPath>
     <STS2Path>$(SteamInstallPath)\steamapps\common\Slay the Spire 2\data_sts2_windows_x86_64</STS2Path>
+    <STS2Mod>$(SteamInstallPath)\steamapps\common\Slay the Spire 2\mods</STS2Mod>
   </PropertyGroup>
 
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
     <STS2Path>$(HOME)/.local/share/Steam/steamapps/common/Slay the Spire 2/data_sts2_linuxbsd_x86_64</STS2Path>
+    <STS2Mod>/home/booe/.local/share/Steam/steamapps/common/Slay the Spire 2/mods</STS2Mod>
   </PropertyGroup>
 
 
@@ -36,7 +38,7 @@
     
     <Copy 
       SourceFiles="@(MyOutputFiles)" 
-      DestinationFolder="/home/booe/.local/share/Steam/steamapps/common/Slay the Spire 2/mods/%(RecursiveDir)" 
+      DestinationFolder="$(STS2Mod)/%(RecursiveDir)" 
       SkipUnchangedFiles="true" />
   </Target>
 </Project>
