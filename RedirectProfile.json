@@ -3,7 +3,8 @@
   "name": "RedirectProfile",
   "author": "booe",
   "description": "redirect modded profile to no mod profile",
-  "version": "v0.1.0",
+  "version": "v0.2.0",
+  "min_game_version": "0.108.0",
   "has_pck": false,
   "has_dll": true,
   "dependencies": [

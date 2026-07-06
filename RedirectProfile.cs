@@ -7,14 +7,14 @@ using MegaCrit.Sts2.Core.Saves;
 namespace RedirctProfile;
 
 
-[HarmonyPatch(typeof(UserDataPathProvider), nameof(UserDataPathProvider.GetProfileDir))]
+[HarmonyPatch(typeof(UserDataPathProvider), nameof(UserDataPathProvider.GetProfileDir), new Type[] { typeof(int), typeof(bool?) })]
 public class Patch
 {
-    static bool Prefix(int profileId, ref string __result) 
+    static bool Prefix(int profileId, bool? forceModState, ref string __result) 
     {
         //source
-        //Path.Combine(IsRunningModded ? "modded/" : "", $"profile{profileId}");
-        __result = Path.Combine($"profile{profileId}");
+        // return GetAccountDir(forceModState).PathJoin($"profile{profileId}");
+        __result = UserDataPathProvider.GetAccountDir(false).PathJoin($"profile{profileId}");
         return false;
     }
 

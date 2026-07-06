@@ -21,4 +21,16 @@
       <HintPath>$(STS2Path)/GodotSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
+
+
+  <Target Name="CopyOutputsToCustomFolder" AfterTargets="AfterBuild">
+    <ItemGroup>
+      <MyOutputFiles Include="$(TargetDir)/RedirectProfile.dll" />
+    </ItemGroup>
+    
+    <Copy 
+      SourceFiles="@(MyOutputFiles)" 
+      DestinationFolder="/home/booe/.local/share/Steam/steamapps/common/Slay the Spire 2/mods/%(RecursiveDir)" 
+      SkipUnchangedFiles="true" />
+  </Target>
 </Project>
